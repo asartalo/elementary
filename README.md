@@ -1,6 +1,9 @@
 Elementary
 ==========
 
+[![Build Status](https://secure.travis-ci.org/asartalo/elementary.png)](http://travis-ci.org/asartalo/elementary)
+
+
 An HTML generator for PHP.
 
 
