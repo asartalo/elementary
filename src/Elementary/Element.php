@@ -33,7 +33,7 @@ class Element
     }
 
     /**
-     * Static helper for calling the method directly without resorting to reflection
+     * Static helper for instantiating a new Element without resorting to reflection
      *
      * @param string $name    the tag name of the element
      * @param array  $options an associative array of attribute and values
@@ -50,6 +50,14 @@ class Element
      */
     public function __toString()
     {
+        return $this->render();
+    }
+
+    /**
+     * @return string the string representation of the element
+     */
+    public function render()
+    {
         $attributes = $this->renderAttributes();
         $contents = $this->renderContents();
 
@@ -57,7 +65,7 @@ class Element
             return "<{$this->name}{$attributes} />";
         }
 
-        return "<{$this->name}{$attributes}>$contents</$this->name>";
+        return "<{$this->name}{$attributes}>{$contents}</{$this->name}>";
     }
 
     protected function renderAttributes()

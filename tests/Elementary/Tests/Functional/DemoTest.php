@@ -19,7 +19,7 @@ class DemoTest extends TestCase
         $this->builder = new ElementBuilder;
 
         $el = $this->builder;
-        $output = $el->html(
+        $this->output = $el->html(
             $el->head(
                 $el->meta_(array('charset'=> 'utf-8')),
                 $el->title('Elementary Example')
@@ -33,7 +33,7 @@ class DemoTest extends TestCase
             )
         );
 
-        $this->htmlString = "$output";
+        $this->htmlString = "{$this->output}";
         $this->htmlDom = str_get_dom($this->htmlString);
     }
 
@@ -94,5 +94,13 @@ class DemoTest extends TestCase
             '<h1>Elementary Demonstration &amp; Examples</h1>',
             $h1->html(), $h1->html()
         );
+    }
+
+    /**
+     * Rendering
+     */
+    public function testRendering()
+    {
+        $this->assertEquals($this->htmlString, $this->output->render());
     }
 }

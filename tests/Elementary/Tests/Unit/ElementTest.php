@@ -23,6 +23,16 @@ class ElementTest extends TestCase
     }
 
     /**
+     * Rendering
+     */
+    public function testRendering()
+    {
+        $foo = new Element('foo');
+
+        $this->assertEquals('<foo></foo>', $foo->render());
+    }
+
+    /**
      * Attributes
      */
     public function testAddingAttributes()
