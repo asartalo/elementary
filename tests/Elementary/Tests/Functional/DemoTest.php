@@ -61,8 +61,7 @@ class DemoTest extends TestCase
     public function testTitleElementIsCreated()
     {
         $html = $this->htmlDom;
-        $titles = $html('html title');
-        $title = $titles[0];
+        $title = array_shift($html('html title'));
         $this->assertEquals(
             'Elementary Example', $title->getPlainText(), $this->htmlString
         );
@@ -75,7 +74,7 @@ class DemoTest extends TestCase
     {
         $html = $this->htmlDom;
         $this->assertCount(1, $html('html head meta'), $this->htmlString);
-        $meta = $html('html head meta')[0];
+        $meta = array_shift($html('html head meta'));
         $this->assertStringEndsWith(' />', $meta->html(), $this->htmlString);
     }
 
@@ -85,7 +84,7 @@ class DemoTest extends TestCase
     public function testTextIsEscaped()
     {
         $html = $this->htmlDom;
-        $h1 = $html('html body h1')[0];
+        $h1 = array_shift($html('html body h1'));
         $this->assertEquals(
             '<h1>Elementary Demonstration &amp; Examples</h1>',
             $h1->html(), $h1->html()
