@@ -61,7 +61,8 @@ class DemoTest extends TestCase
     public function testTitleElementIsCreated()
     {
         $html = $this->htmlDom;
-        $title = $html('html title')[0];
+        $titles = $html('html title');
+        $title = $titles[0];
         $this->assertEquals(
             'Elementary Example', $title->getPlainText(), $this->htmlString
         );
