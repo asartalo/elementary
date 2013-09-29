@@ -1,0 +1,29 @@
+{
+    "name": "asar/elementary",
+    "type": "library",
+    "description": "An HTML generator for PHP.",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/php-invoker": ">=1.1.0",
+        "phpunit/phpunit": ">=3.7.0",
+        "asar/asar-test-helper": "dev-master",
+        "niels/ganon": "dev-master"
+    },
+    "license": "MIT",
+    "authors" : [
+        {
+            "name": "Wayne Duran",
+            "email": "asartalo@gmail.com",
+            "role": "Developer",
+            "homepage": "http://www.asartalo.org"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Elementary\\Tests": "tests",
+            "Elementary": "src"
+        }
+    }
+}
