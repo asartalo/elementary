@@ -61,7 +61,10 @@ class DemoTest extends TestCase
     public function testTitleElementIsCreated()
     {
         $html = $this->htmlDom;
-        $title = array_shift($html('html title'));
+        // If you're wondering why this is necessary,
+        // see this: http://stackoverflow.com/questions/2354609/strict-standards-only-variables-should-be-passed-by-reference
+        $titles = $html('html title');
+        $title = $titles[0];
         $this->assertEquals(
             'Elementary Example', $title->getPlainText(), $this->htmlString
         );
@@ -74,7 +77,8 @@ class DemoTest extends TestCase
     {
         $html = $this->htmlDom;
         $this->assertCount(1, $html('html head meta'), $this->htmlString);
-        $meta = array_shift($html('html head meta'));
+        $metas = $html('html head meta');
+        $meta = $metas[0];
         $this->assertStringEndsWith(' />', $meta->html(), $this->htmlString);
     }
 
@@ -84,7 +88,8 @@ class DemoTest extends TestCase
     public function testTextIsEscaped()
     {
         $html = $this->htmlDom;
-        $h1 = array_shift($html('html body h1'));
+        $h1s = $html('html body h1');
+        $h1 = $h1s[0];
         $this->assertEquals(
             '<h1>Elementary Demonstration &amp; Examples</h1>',
             $h1->html(), $h1->html()
