@@ -33,19 +33,6 @@ class Element
     }
 
     /**
-     * Static helper for instantiating a new Element without resorting to reflection
-     *
-     * @param string $name    the tag name of the element
-     * @param array  $options an associative array of attribute and values
-     *
-     * @return Element an instance of Element
-     */
-    public static function getNew($name, $options)
-    {
-        return new Element($name, $options);
-    }
-
-    /**
      * @return string the string representation of the element
      */
     public function __toString()

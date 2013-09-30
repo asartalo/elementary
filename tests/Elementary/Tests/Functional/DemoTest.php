@@ -25,10 +25,12 @@ class DemoTest extends TestCase
                 $el->title('Elementary Example')
             ),
             $el->body(
-                $el->h1('Elementary Demonstration & Examples'),
-                $el->div(
-                    array('id' => 'contents'),
-                    $el->p('This is an example paragraph.')
+                $el->_( // Fragment
+                    $el->h1('Elementary Demonstration & Examples'),
+                    $el->div(
+                        array('id' => 'contents'),
+                        $el->p('This is an example paragraph.')
+                    )
                 )
             )
         );
@@ -88,7 +90,7 @@ class DemoTest extends TestCase
     public function testTextIsEscaped()
     {
         $html = $this->htmlDom;
-        $h1s = $html('html body h1');
+        $h1s = $html('html body > h1');
         $h1 = $h1s[0];
         $this->assertEquals(
             '<h1>Elementary Demonstration &amp; Examples</h1>',

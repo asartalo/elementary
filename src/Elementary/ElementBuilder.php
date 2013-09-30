@@ -34,7 +34,7 @@ class ElementBuilder
             $options['attributes'] = array_shift($arguments);
         }
 
-        if (strpos($name, '_') == strlen($name) - 1) {
+        if ($this->_isEmpty($name)) {
             $options['empty'] = true;
             $name = rtrim($name, '_');
         }
@@ -43,7 +43,30 @@ class ElementBuilder
             $options['contents'][] = $content;
         }
 
-        return Element::getNew($name, $options);
+        return new Element($name, $options);
+    }
+
+    protected function _isEmpty($name)
+    {
+        $length = strlen($name);
+
+        return $length > 1 && strpos($name, '_') == strlen($name) - 1;
+    }
+
+    /**
+     * Creates an element fragment
+     *
+     * @return Fragment
+     */
+    public function _()
+    {
+        $contents = func_get_args();
+        $fragment = new Fragment();
+        foreach ($contents as $content) {
+            $fragment->add($content);
+        }
+
+        return $fragment;
     }
 
 }
