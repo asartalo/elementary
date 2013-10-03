@@ -31,7 +31,7 @@ $el->html(
 ?>
 ```
 
-Produces the following structure *without the indentation and line-breaks*.
+Produces the following structure **without the indentation and line-breaks**.
 
 ```html
 <html>
@@ -49,6 +49,62 @@ Produces the following structure *without the indentation and line-breaks*.
 
 ```
 
+Empty Elements
+--------------
+
+To create an empty element like `<br />`, or `<img />`, append the element name with an underscore '_'.
+
+```php
+<?php
+
+echo $el->img_(array('src' => 'bartman.png'));
+// <img src="bartman.png" />
+?>
+```
+
+Fragments
+---------
+
+Sometimes you might want to hold elements temporarily before adding them to a node. The way to do this is by creating *Fragments* similar in spirit to DOM's HTML Fragments.
+
+```php
+<?php
+
+$fragment = $el->_($el->p('Foo.'), $el->p('Bar.'));
+
+?>
+```
+
+You can then add add more elements to it if you like.
+
+```php
+<?php
+
+$fragment->add($el->p('Baz.'));
+
+?>
+```
+
+When you add the fragment to an element and print it, it will take the contents of the fragment as if they were its own. Like how:
+
+```php
+<?php
+
+$el->div($fragment);
+
+?>
+```
+
+...becomes
+
+```html
+<div>
+    <p>Foo.</p>
+    <p>Bar.</p>
+    <p>Baz</p>
+</div>
+```
+
 Caveats
 -------
 
@@ -61,6 +117,6 @@ Caveats
 FAQ
 ---
 
-*Q. Is it fast?*
+**Q. Is it fast?**
 
 Don't know. Haven't benchmarked it. I don't think it is but it's fast enough for me.
